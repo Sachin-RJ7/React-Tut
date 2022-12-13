@@ -3,21 +3,20 @@ import './App.css';
 import { useState } from 'react';
 import User from './User';
 import Message from './Message'
+import Student from './Student'
 
 function App() {
-  const [data,setDate] = useState(0); 
-  function updateData(){
-    setDate(data + 1);
-    // alert("Congratulations");
-  }
-  console.log("_____________");
+  const [name, setname] = useState("Sachin");
+   
   return (
     <div className="App">
       <h1>Hello</h1>
       <User />
       <Message />
-      <h4>{data}</h4>
-      <button onClick={updateData}>Update data</button>
+      <h1>Props in react </h1>
+      <Student name = { name} />
+      <button onClick={()=>{setname("Dev")}}>Update Your Name</button>
+      
     </div>
   );
 }
