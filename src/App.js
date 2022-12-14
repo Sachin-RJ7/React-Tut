@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Form from "./Form";
 
 function App() {
   const[status, setStatus] = useState(true);
@@ -13,6 +14,7 @@ function App() {
       {/* <button onClick={()=>setStatus(false)}>Hide</button> */}
       {/* <button onClick={()=>setStatus(true)}>Show</button> */}
       <button onClick={()=>setStatus(!status)}>Toggle</button>
+      <Form />
     </div>
   );
 }
