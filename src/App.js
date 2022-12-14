@@ -1,20 +1,17 @@
 import { useState } from "react";
 import "./App.css";
-import Form from "./Form";
+import Child from "./Child";
 
 function App() {
-  const[status, setStatus] = useState(true);
+  function getData ()
+  {
+    alert('User From App');
+  }
      
   return (
     <div className="App">
-      <h1>Let's see the magic!</h1>
-      {
-        status?<h3 style={{color:"blue"}}>Hii, My self React Js</h3>:null
-      }
-      {/* <button onClick={()=>setStatus(false)}>Hide</button> */}
-      {/* <button onClick={()=>setStatus(true)}>Show</button> */}
-      <button onClick={()=>setStatus(!status)}>Toggle</button>
-      <Form />
+      <h1>Passing function as props</h1>
+      <Child data={getData} />
     </div>
   );
 }
