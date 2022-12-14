@@ -2,24 +2,17 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [data, setdata] = useState("Sunny");
-  const [print, setPrint] = useState(false);
-
-  function getData(val) {
-    console.log(val.target.value);
-    setdata(val.target.value);
-    setPrint(false)
-  }
-
+  const[status, setStatus] = useState(true);
+     
   return (
     <div className="App">
+      <h1>Let's see the magic!</h1>
       {
-        print?
-        <h1>{data}</h1>
-        :null
+        status?<h3 style={{color:"blue"}}>Hii, My self React Js</h3>:null
       }
-      <input type="text" onChange={getData} />
-      <button onClick={()=>setPrint(true)}>Print name</button>
+      {/* <button onClick={()=>setStatus(false)}>Hide</button> */}
+      {/* <button onClick={()=>setStatus(true)}>Show</button> */}
+      <button onClick={()=>setStatus(!status)}>Toggle</button>
     </div>
   );
 }
