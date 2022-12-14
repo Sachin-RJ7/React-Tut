@@ -1,35 +1,27 @@
+import { useState } from "react";
+import "./App.css";
 
-import './App.css';
-import React, { useState } from 'react';
-// import User from './User';
-// import Message from './Message'
-// import Student from './Student'
-import StudentClass from './StudentClass';
+function App() {
+  const [data, setdata] = useState("Sunny");
+  const [print, setPrint] = useState(false);
 
-class App extends React.Component
-{
-  constructor(){
-    super();
-    this.state = {
-      name : "Sachin"
-    }
+  function getData(val) {
+    console.log(val.target.value);
+    setdata(val.target.value);
+    setPrint(false)
   }
-  
-   render(){
-    return (
-      <div className="App">
-        <h1>Hello</h1>
-        {/* <User /> */}
-        {/* <Message /> */}
-        {/* <h1>Props in react </h1> */}
-        {/* <Student name = "Dev" /> */}
-        <StudentClass name = {this.state.name} email = "developer@gmail.com" />
-        <button onClick={()=>{this.setState({name:"Dev"})}}>Update name</button>
-      </div>
-    );
-   }
-  
-}
 
+  return (
+    <div className="App">
+      {
+        print?
+        <h1>{data}</h1>
+        :null
+      }
+      <input type="text" onChange={getData} />
+      <button onClick={()=>setPrint(true)}>Print name</button>
+    </div>
+  );
+}
 
 export default App;
