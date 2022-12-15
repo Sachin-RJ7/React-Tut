@@ -1,17 +1,16 @@
 import { useState } from "react";
 import "./App.css";
-import Child from "./Child";
+import User from "./User";
 
 function App() {
-  function getData ()
-  {
-    alert('User From App');
-  }
+  
+  const [name, setName] = useState("Dev");
      
   return (
     <div className="App">
-      <h1>Passing function as props</h1>
-      <Child data={getData} />
+      <h1>Render Method</h1>
+      <User name={name} />
+      <button onClick={()=>setName("Sachin kumar")}>Update Name</button>
     </div>
   );
 }
