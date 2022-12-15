@@ -1,18 +1,36 @@
 import { useState } from "react";
 import "./App.css";
-import User from "./User";
+import React from "react";
 
-function App() {
-  
-  const [name, setName] = useState("Dev");
-     
-  return (
-    <div className="App">
-      <h1>Render Method</h1>
-      <User name={name} />
-      <button onClick={()=>setName("Sachin kumar")}>Update Name</button>
-    </div>
-  );
+class App extends React.Component{
+  constructor()
+  {
+    super();
+
+    this.state = {
+      name : "Sachin Kumar"
+    }
+
+    console.log("Contructor");
+  }
+
+  componentDidMount()
+  {
+    console.log("Component did mount:");
+  }
+
+  render()
+  {
+    console.log("Render called:");
+
+    return(
+      <div className="App">
+        <h1>Component Did Mount</h1>
+        <h2>My friend name is {this.state.name}</h2>
+        <button onClick={()=>this.setState({name:"Developer"})}>Update Name</button>
+      </div>
+    )
+  }
 }
 
 export default App;
