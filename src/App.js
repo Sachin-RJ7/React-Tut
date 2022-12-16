@@ -8,27 +8,21 @@ class App extends React.Component{
     super();
 
     this.state = {
-      name : "Sachin Kumar",
-      who: null
+      count: 0
     }
 
     console.log("Contructor");
   }
 
-  componentDidMount()
+  // shouldComponentUpdate
+  shouldComponentUpdate()
   {
-    console.log("Component did mount:");
-  }
-
-  componentDidUpdate()
-  {
-    console.log("componentDidUpdate called:");
-    // condition is necessary, otherwise it will become a infinite loop, will give errors.
-    if (this.state.who == null) {
-      this.setState({who:"Sachin kumar"})
+    // Bydefault it remains false and prevents updates in a component
+    console.log("should Component Update:",this.state.count);
+    if (this.state.count >= 3 && this.state.count <=7) {
+      return true;
     }
-    
-
+    return false;
   }
 
   render()
@@ -37,10 +31,9 @@ class App extends React.Component{
 
     return(
       <div className="App">
-        <h1>Component Did Mount</h1>
-        <h2>My friend name is {this.state.name}</h2>
-        <h3>I am {this.state.who}</h3>
-        <button onClick={()=>this.setState({name:"Developer"})}>Update Name</button>
+        <h1>Should Component Update</h1>
+        <h3>Count: {this.state.count}</h3>
+        <button onClick={()=>this.setState({count:this.state.count+1})}>Update Counter</button>
       </div>
     )
   }
