@@ -1,19 +1,18 @@
 import "./App.css";
-import { Table } from "react-bootstrap";
 import Child from "./Child";
 
 function App()
 {
 
+
+  function parentAlert(name)
+  {
+    alert(name)
+  }
+
   return (
     <div className="App">
-      <Table>
-        <tbody>
-          <tr>
-            <Child />
-          </tr>
-        </tbody>
-      </Table>
+      <Child alert={parentAlert} />
     </div>
   )
 

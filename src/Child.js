@@ -1,12 +1,11 @@
 
 
 function Child(props){
+    const data = "Sachin Kumar"
     return(
-        // fragment
-        <>
-            <td>Sachin</td>
-            <td>Kumar</td>
-        </>
+        <div>
+            <button onClick={()=>props.alert(data)}>Click me</button>
+        </div>
     )
 }
 
