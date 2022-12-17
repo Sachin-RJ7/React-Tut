@@ -19,7 +19,8 @@ function App()
     e.preventDefault();
     console.log("input field 1",inputRef1.current.value)
     console.log("input field 2",inputRef2.current.value)
-    console.log("input field 3",inputRef3.current.value)
+    let input3 = document.getElementById('input3').value
+    console.log("input field 3",input3)
   }
 
   return(
@@ -30,7 +31,7 @@ function App()
       <form onSubmit={submitForm}>
         <input type="text" ref={inputRef1 } /><br /> <br />
         <input type="text" ref={inputRef2} /><br /> <br />
-        <input type="text" ref={inputRef3} /><br /> <br />
+        <input type="text" id="input3" /><br /> <br />
         <button type="submit" >Submit</button>         
       </form>
 
