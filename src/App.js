@@ -1,25 +1,21 @@
-import { useRef } from "react";
+
+import { useState } from "react";
 import "./App.css";
-import Child from "./Child";
+
+// controlled component
+
+// A controlled component is a type of form element in React that is controlled by the component's state. In other words, the value of a controlled component is determined by the value of the component's state, rather than by the value of the DOM element's value attribute.
 
 function App()
 {
 
-  let inputRef = useRef(null)
+  const [val, setValue] = useState("Enter your name");
 
-  function handleInput()
-  {
-    console.log("function Call");
-    inputRef.current.value = "1000"
-    inputRef.current.focus()
-    inputRef.current.style.display="none"
-  }
-
+  
   return(
     <div className="App">
-      {/* <h1>Use Ref in react</h1> */}
-      <Child ref={inputRef} />
-      <button onClick={handleInput}>Handle Input</button>
+      <h1>Controlled Component</h1>
+      <input type="text" value={val} onChange={(e)=>setValue(e.target.value)} />
     </div>
   )
 }
