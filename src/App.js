@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import "./App.css";
+import Child from "./Child";
 
 function App()
 {
@@ -16,8 +17,8 @@ function App()
 
   return(
     <div className="App">
-      <h1>Use Ref in react</h1>
-      <input type="text" ref={inputRef} />
+      {/* <h1>Use Ref in react</h1> */}
+      <Child ref={inputRef} />
       <button onClick={handleInput}>Handle Input</button>
     </div>
   )
