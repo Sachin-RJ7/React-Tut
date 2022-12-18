@@ -1,25 +1,20 @@
 
-import React from "react";
+// import React from "react";
+import {useLocation,
+    useNavigate,
+    useParams} from 'react-router-dom'
 
-class User extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            email : "dev@testgmai.com"
-        }
-    }
-    render()
-    {
-        console.log("Render method:", this.state.email)
-        return (
-            <div>
-                <h1>User Component </h1>
-                <h2>My self {this.props.name}</h2>
-                <h3>My email id: {this.state.email}</h3>
-                <button onClick={()=>this.setState({email:"sachin@test@gmail.com"})}>Update Email</button>
-            </div>
-        )
-    }
+function User(prop)
+{
+    const params = useParams();
+    console.warn(params.id);
+
+    return(
+        <div>
+            <h1>Hlo, this is user no.{params.id} </h1>
+            <h1>Hlo, my name is {params.name} </h1>
+        </div>
+    )
 }
 
 export default User;
