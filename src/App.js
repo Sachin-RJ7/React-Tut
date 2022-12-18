@@ -1,43 +1,52 @@
 
-import { useRef } from "react";
 import "./App.css";
+import React from "react";
+import {BrowserRouter as Router, Link, Routes, Route} from 'react-router-dom'
 
-
-// Uncontrolled component
-
-// An uncontrolled component is a form element in React that is not controlled by the component's state. In other words, the value of an uncontrolled component is determined by the DOM element's value attribute, rather than by the component's state.
 
 function App()
 {
   
-  let inputRef1 = useRef(null)
-  let inputRef2 = useRef(null)
-  let inputRef3 = useRef(null)
-
-  function submitForm(e)
-  {
-    e.preventDefault();
-    console.log("input field 1",inputRef1.current.value)
-    console.log("input field 2",inputRef2.current.value)
-    let input3 = document.getElementById('input3').value
-    console.log("input field 3",input3)
-  }
-
-  return(
+  return (
     <div className="App">
 
-      <h1>Uncontrolled Component</h1>
+      <Router>
 
-      <form onSubmit={submitForm}>
-        <input type="text" ref={inputRef1 } /><br /> <br />
-        <input type="text" ref={inputRef2} /><br /> <br />
-        <input type="text" id="input3" /><br /> <br />
-        <button type="submit" >Submit</button>         
-      </form>
+        <Link to="/home"  > Home page  </Link>
+        <Link to="/about" > About page </Link>
 
+        <Routes>
+         <Route path="/home" element={<Home />}/>
+         <Route path="/about" element={<About />}/>
+        </Routes>
+        
+      </Router>
+      
     </div>
   )
 
 }
+
+
+function Home()
+{
+  return(
+    <div>
+      <h1>Home page</h1>
+      <p>This is home page</p>
+    </div>
+  )
+}
+
+function About()
+{
+  return(
+    <div>
+      <h1>About page</h1>
+      <p>This is about page</p>
+    </div>
+  )
+}
+
 
 export default App;
