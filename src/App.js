@@ -1,52 +1,25 @@
-
 import "./App.css";
 import React from "react";
-import {BrowserRouter as Router, Link, Routes, Route} from 'react-router-dom'
+import { Routes, Route } from "react-router-dom";
+import Nav from "./Nav";
+import Home from "./components/home/Home";
+import About from "./components/about/About";
+import PageNotFound from "./components/PageNotFound";
 
-
-function App()
-{
-  
+function App() {
   return (
     <div className="App">
+      <Nav />
 
-      <Router>
+      <Routes>
+        <Route path="/" exact="true"  element={<Home />} />
+        <Route path="/about" element={<About />} />
 
-        <Link to="/home"  > Home page  </Link>
-        <Link to="/about" > About page </Link>
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
 
-        <Routes>
-         <Route path="/home" element={<Home />}/>
-         <Route path="/about" element={<About />}/>
-        </Routes>
-        
-      </Router>
-      
     </div>
-  )
-
+  );
 }
-
-
-function Home()
-{
-  return(
-    <div>
-      <h1>Home page</h1>
-      <p>This is home page</p>
-    </div>
-  )
-}
-
-function About()
-{
-  return(
-    <div>
-      <h1>About page</h1>
-      <p>This is about page</p>
-    </div>
-  )
-}
-
 
 export default App;
