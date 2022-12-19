@@ -1,17 +1,18 @@
-import React,{ forwardRef } from "react";
-
-// forwardRef
-
-// forwardRef is a higher-order component in React that allows you to pass a ref through a component to one of its children. This is useful when you need to access the properties of a DOM element that is rendered by a child component.
-
-function Child(props,ref){
-    
+import React,{useEffect,useRef} from 'react'
+function Child(props)
+{
+    const lastVal=useRef();
+    useEffect(()=>{
+        lastVal.current=props.count
+    })
+    const previousProps=lastVal.current
     return(
         <div>
-            <h1>Forward Ref</h1>
-            <input type="text" ref={ref} />
+            <h1>Count is  : {props.count}</h1>
+            <h1>previous Props is  : {previousProps}</h1>
+
         </div>
     )
 }
 
-export default forwardRef(Child);
+export default Child
