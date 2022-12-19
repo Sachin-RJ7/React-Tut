@@ -1,42 +1,59 @@
 import "./App.css";
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react";
+function App() {
+  const [users, setUser] = useState([]);
+  useEffect(() => {
+    getUsers();
+  }, []);
 
-function App()
-{
-
-  const [name, setName] = useState("")
-  const [city, setCity] = useState("")
-
-  function saveUser()
-  {
-    console.warn({name, city});
-
-    const data = {name, city};  // define an object containing the name and city values
-
-fetch("https://mocki.io/v1/d4867d8b-b5d5-4a48-a4ab-79131b5809b8", {  // send a POST request to the specified URL
-  method: 'POST',  // set the request method to POST
-  headers: {  // set the request headers
-    'Accept': 'application/json',  // accept a response in JSON format
-    'Content-Type': 'application/json'  // send the request body in JSON format
-  },
-  body: JSON.stringify(data)  // stringify the data object and send it as the request body
-}).then((result) => {  // when the request is completed, handle the result
-  // console.warn(result);  // you can use this to log the result object to the console
-  result.json().then((resp) => {  // parse the result body as JSON and handle the parsed data
-    console.warn("resp: ", resp);  // you can use this to log the parsed data to the console
-  })
-});
-
+  function getUsers() {
+    fetch("http://localhost:4000/todo").then((result) => {
+      result.json().then((resp) => {
+        // console.warn(resp)
+        setUser(resp);
+      });
+    });
   }
 
+  console.warn(users);
+  function deleteUser(id) {
+    fetch(`http://localhost:4000/todo/${id}`, {
+      method: "DELETE",
+    }).then((result) => {
+      result.json().then((resp) => {
+        console.warn(resp);
+        getUsers();
+      });
+    });
+  }
+  
   return (
     <div className="App">
-      <h1>Post API example</h1>
-      <input type="text" value={name} onChange = {(e)=>setName(e.target.value)} name="name" /> <br/> <br/>
-      <input type="text" value={city} onChange = {(e)=>{setCity(e.target.value)}} name="city" /> <br/> <br/>
-      <button onClick={saveUser} type="submit">Save New User</button>
+      <h1>Delete User With API </h1>
+      <table border="1" style={{ float: "left" }}>
+        <tbody>
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Mobile</td>
+            <td>Operations</td>
+          </tr>
+          {users.map((item, i) => (
+            <tr key={i}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.email}</td>
+              <td>{item.mobile}</td>
+              <td>
+                <button onClick={() => deleteUser(item.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
